@@ -1,4 +1,4 @@
-var SpaCoin = artifacts.require("./endavacoin.sol");
+var EndavaCoin = artifacts.require("./endavacoin.sol");
 
 
 module.exports = function(deployer) {

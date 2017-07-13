@@ -34,7 +34,7 @@ contract("EndavaCoin", function(accounts) {
 			user1BalancePost = u1balance.toNumber() ;
 
 			assert.equal(20000, user1BalancePost, "incorrect balance for user1");
-			assert.equal(80000, unallocatedCoinsPost, "incorrect outstanding value");
+			assert.equal(9980000, unallocatedCoinsPost, "incorrect outstanding value");
 		}) ;
 
 	});
@@ -80,7 +80,7 @@ contract("EndavaCoin", function(accounts) {
 		var user1FinalBalance ;
 		return EndavaCoin.deployed().then(function(instance) {
 			coin = instance ;
-			return coin.allocate(user1, 60000, {from:owner}); // all the coins left after previous tests
+			return coin.allocate(user1, 9960000, {from:owner}); // all the coins left after previous tests
 		}).then(function(result){
 			return coin.holderBalance.call(user1) ;
 		}).then(function(result) {
@@ -88,7 +88,7 @@ contract("EndavaCoin", function(accounts) {
 			return coin.allocate(user1, 1, {from:owner}) ; // an extra coin
 		}).then(function(result){
 			assert.equal("InvalidCoinUsage", result.logs[0].event, "expected error for over allocation") ;
-			assert.equal(70000, user1FinalBalance, "user1 has the wrong final balance") ;
+			assert.equal(9970000, user1FinalBalance, "user1 has the wrong final balance") ;
 		}) ;
 	}) ;
 
